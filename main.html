@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="template.css">
     </head>
     <body>
+        
         <div class="calculator">
+            <div class="fragment-block"><i calss="fragment">знакомство</i> с инструментами построения пользовательских интерфейсов web-сайтов: <i calss="fragment">HTML, CSS</i>.</div>
             <div class="display" id="disp2"></div>
             <div class="display" id="disp1">0</div>
             <div class="buttons">
@@ -28,10 +30,28 @@
                 <button class="btn digit" id="0">0</button>
                 <button class="btn operator" id="=">=</button>
                 <button class="btn operator" id="+">+</button>
+                <button class="btn operator" id="cls">cls</button>
+                <button class="btn operator" id="ct">ct</button>
             </div>
-        </div>
-        <div class="git_hub">
-            <a  href="https://github.com/IgorSergeevichISIT/Web/tree/main/turorials/lab1"><button class="git"></button></a>
+            <div class="trash">
+                <div class="git_hub">
+                    <a class="git" href="https://github.com/IgorSergeevichISIT/Web/tree/main/turorials/lab1"><button>This is my git-hub. Follow for more information</button></a>
+                </div>
+                <div>
+                    <label>
+                        <select>
+                            <option>Элемент 1</option>
+                            <option>Элемент 2</option>
+                            <option>Элемент 3</option>
+                            <option>Элемент 4</option>
+                        </select>
+                    </label>
+                </div>
+                <details cals="about" >
+                    <summary > click me </summary>
+                    Шелепво Денис Владимирович, студент группы ИС-22
+                </details>
+            </div>
         </div>
         <script rel="script" src="./test.js"></script>
     </body>
