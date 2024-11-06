@@ -11,53 +11,38 @@ body {
 
 .calculator {  
     display: flex;
-    flex-wrap: wrap;  
-    justify-content: center;
-    align-items: center;
-    position: inherit;
-    width: 350px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 360px;
     background-color: #5c1a1a60;
     border-radius: 10px 10px 0px 0px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+}
+.field{
+    display: flex;
 }
 
 .display {
-    width:350px;
-    flex-direction: column;
-    height: 2px;
-    padding: 5px 10px 25px 10px;
     background-color: #ffffff60;
     color: #ffd900c5;
     font-size: 24px;
     text-align: right;
     border:none;
+    height: 30px;
+
 }
-#disp1{
+.displays{
     border-bottom: 1px solid #5c1a1a60;
 }
-
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .btn {
-    flex: 1;
+    flex:1;
+    padding: 20px;
     background-color: #ffffff65;
     color: #f5f5f5;
     border: none;
     font-size: 1.5em;
-    padding: 30px;
     cursor: pointer;
     transition: 0.2s;
-}
-
-#cls{
-    border: none;
-}
-#ct{
-    border: none;
 }
 
 .btn:hover {
@@ -66,12 +51,16 @@ body {
 
 .operator {
 
-    background-color: #a8151596;
+    background-color: #d6995496;
     color: #fff;
 }
 
+.btn[id="+"], .btn[id="-"], .btn[id="*"], .btn[id="/"]{
+    font-size: 30px;
+}
+
 .operator:hover {
-    background-color: #a12525c7;
+    background-color: #dbbc56c7;
 }
 
 .fragment-block, .fragment{
@@ -80,19 +69,19 @@ body {
 }
 
 i{
+    flex-wrap:wrap;
     color:white;
     text-shadow:
-    0 0 7px #740a94,
-    0 0 10px #740a94,
-    0 0 21px #740a94,
-    0 0 42px rgb(255, 0, 191),
+    0 0 7px #c710ff,
+    0 0 10px #990ec4,
+    0 0 21px #9f0ccc,
+    0 0 42px rgb(255, 0, 140),
     0 0 82px rgb(255, 0, 191),
     0 0 92px rgb(255, 0, 191),
     0 0 102px #0fa,
     0 0 151px #0fa;
 }
 .trash{
-    flex: 1;
     color: #fff;
     border-left:none;
     border-right:none;
@@ -103,7 +92,6 @@ i{
     background-color: #972727c9;
 }
 .trash button{
-    padding: 20px 38px 0px 38px;
     background-color: rgba(0, 255, 170, 0);
     border: none;
     color: white;   
