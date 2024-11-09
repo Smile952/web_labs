@@ -16,6 +16,8 @@ var color_switch = 0
 
 var first_operation = '+';
 
+var fac_clicks = 0
+
 window.onload = function(){
     const display_expression = document.getElementById('disp1');
     const display_ans = document.getElementById('disp2')
@@ -50,7 +52,16 @@ window.onload = function(){
             case 'pow':
                 return String(Math.pow(first_value, 2))
             case 'fac':
-                return String(factorial(first_value))
+                factor = first_value
+                if(first_value < 3000){
+                    factor = factorial(first_value)
+                }
+                else{
+                    alert("Переполнение")
+                    clear_expression()
+                    factor = 0
+                }
+                return String(factor)
         }
     }
     function changeBackground() {
@@ -66,6 +77,8 @@ window.onload = function(){
     //полная очистка введенных и рассчитаных данных
     function clear_expression(){
         first_operation = '+';
+        first_value = 0
+        second_value = 0
         isNext = 0
         arg_first = ''
         arg_second = ''
@@ -77,15 +90,17 @@ window.onload = function(){
         calc = ''
     }
     function onDigitButtonPress(btn){
-        if(operation !== ''){
-            arg_second+=btn.id;
-            second_value = parseFloat(arg_second)
-            expression = arg_first + operation + arg_second
-        }
-        else{
-            arg_first+=btn.id;
-            first_value = parseFloat(arg_first);
-            expression = arg_first
+        if(loadException()){
+            if(operation !== ''){
+                arg_second+=btn.id;
+                second_value = parseFloat(arg_second)
+                expression = arg_first + operation + arg_second
+            }
+            else{
+                arg_first+=btn.id;
+                first_value = parseFloat(arg_first);
+                expression = arg_first
+            }
         }
     }
     function onOperatorButtonPress(btn){
@@ -136,13 +151,19 @@ window.onload = function(){
                 clear_expression();
                 break;
             case "sqrt":
-                one_num_calc('sqrt')
+                if(second_value === 0){
+                    one_num_calc('sqrt')
+                }
                 break;
             case 'pow':
-                one_num_calc('pow')
+                if(second_value === 0){
+                    one_num_calc('pow')
+                }
                 break;
             case 'fac':
-                one_num_calc('fac')
+                if(second_value === 0){
+                    one_num_calc('fac')
+                }
                 break;
         }
        
@@ -174,5 +195,11 @@ window.onload = function(){
         arg_second = '';
         second_value = 0;
         operation = '';
+    }
+    function loadException(){
+        if(expression.length > 24){
+            return false;
+        }
+        return true;
     }
 }
