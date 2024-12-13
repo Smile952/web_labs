@@ -13,9 +13,9 @@ export class HumanCard{
         return (
             `
                 <div class="card mb-3"">
-                    <div class="row g-0">
-                        <div>
-                            <img src="${this.data.photo_400_orig}" class="img-fluid" alt="картинка">
+                    <div>
+                        <div style="display: flex; ">
+                            <img src="${this.data.photo_400_orig}"  alt="картинка" style="display: block; max-width: 30%; height: auto;">
                             <div id="${this.data.id}" class="card-body text-center">
                                 <h5 class="card-text">${this.data.first_name} ${this.data.last_name}</h5>
                             </div> 
@@ -27,11 +27,14 @@ export class HumanCard{
     }
 
     clickBack(){
+        document.getElementById("buttons").innerHTML = `<button id="up" >sort to up</button>
+            <button id = "down" >sort to down</button>`
         const main_page = new MainPage(this.parent)
         main_page.render()
     }
 
     clickCard() {
+        document.getElementById("buttons").innerHTML = ''
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML("beforeend", html)
