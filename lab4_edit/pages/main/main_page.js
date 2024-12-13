@@ -3,8 +3,6 @@ import {Urls} from "../../modules/urls.js";
 import {groupId} from "../../modules/consts.js";
 import {HumanCard} from "../card_page/HumanCard.js";
 
-var cards = [];
-
 export class MainPage{
     constructor(parent){
         this.parent = parent
@@ -20,7 +18,7 @@ export class MainPage{
             this.renderItem(data.response.items, this.pageRoot)
         })
     }
-
+ 
     renderItem(items, page){
         document.getElementById("up").onclick = function(){
             
