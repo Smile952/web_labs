@@ -1,16 +1,14 @@
 export class MainPageButton{
-    constructor(parent, id){
+    constructor(parent){
         this.parent = parent
-        this.id = id
     }
 
     getHTML(){
-        return (`<button type="button" class="btn btn-primary" id="${this.id}" style="position: absolute; bottom: 5px;">Press me daddy</button>`)
+        return (`<button type="button" class="btn btn-primary">Press me daddy</button>`)
     }
 
     addListeners(listener) {
-        document
-            .getElementById(this.id)
+        this.parent
             .addEventListener("click", listener)
     }
 

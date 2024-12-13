@@ -1,5 +1,6 @@
-/* import { MainPage } from "../main/main_page" */
+import { MainPage } from "../main/main_page.js"
 import{MainPageButton} from "../../components/buttons/MainPageButton.js"
+import { BackButtonComponent } from "../../components/buttons/BackButton.js"
 
 export class HumanCard{
 
@@ -11,15 +12,13 @@ export class HumanCard{
     getHTML() {
         return (
             `
-                <div class="card mb-3" style="width: 540px;">
+                <div class="card mb-3"">
                     <div class="row g-0">
-                        <div class="col-md-4">
+                        <div>
                             <img src="${this.data.photo_400_orig}" class="img-fluid" alt="картинка">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">${this.data.first_name} ${this.data.last_name}</h5>
-                            </div>
+                            <div id="${this.data.id}" class="card-body text-center">
+                                <h5 class="card-text">${this.data.first_name} ${this.data.last_name}</h5>
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -43,12 +42,12 @@ export class HumanCard{
         if(!listener){
             const html = this.getHTML()
             this.parent.insertAdjacentHTML("beforeend", html)
-            var button = new MainPageButton(document.getElementById("invest"), this.data.id)
+            var button = new MainPageButton(document.getElementById(this.data.id))
             button.render(this.clickCard.bind(this))
         }
         
         if(listener){
-            const backButton = new BackButtonComponent(document.getElementById("invest"))
+            const backButton = new BackButtonComponent(document.getElementById(this.data.id))
             backButton.render(this.clickBack.bind(this))
         }
     }
