@@ -11,7 +11,7 @@ class DBConnector{
     }
 
     writeFile(data){
-        fs.write(path.join(process.cwd(), 'db', this.filename), data, 'utf-8')
+        fs.writeFileSync(path.join(process.cwd(), 'db', this.filename), data)
     }
 }
 

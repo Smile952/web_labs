@@ -5,15 +5,18 @@ class StocksService{
         if( id !== undefined){
             return StockDAO.findById(id).toJSON()
         }
-        return StockDAO.find().map((stock) => stock.toJSON())
+        return StockDAO.find()
     }
 
     static addStock(stock){
-        return StockDAO.insert(stock).toJSON()
+        return StockDAO.insert(stock)
+    }
+    static addStocks(stocks){
+        return StockDAO.insertAll(stocks)
     }
 
     static deleteStock(id){
-        return StockDAO.delete(id).map((stock) => stock.toJSON())
+        return StockDAO.delete(id)
     }
 }
 

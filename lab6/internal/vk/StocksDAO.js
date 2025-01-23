@@ -1,12 +1,12 @@
+
 const {StockRepository} = require('./StocksRepository.js');
 
 class StockDAO{
-    constructor(id, src, alt, title, text){
+    constructor(id, photo_400_orig, first_name, last_name){
         this.id = id;
-        this.src = src;
-        this.alt = alt;
-        this.title = title;
-        this.text = text;
+        this.photo = photo_400_orig;
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
 
     static _validateId(id){
@@ -17,7 +17,7 @@ class StockDAO{
     }
 
     static _validate(stock){
-        if(stock.id === undefined || stock.src === undefined || stock.alt === undefined || stock.title === undefined || stock.text === undefined){
+        if(stock.id === undefined || stock.photo === undefined || stock.first_name === undefined || stock.last_name === undefined){
             throw new Error('Invalid stock data');
         }
         this._validateId(stock.id);
@@ -26,8 +26,8 @@ class StockDAO{
     static find(){
         const stock = StockRepository.read();
         
-        return stock.map(({id, src, alt, title, text})=>{
-            return new this(id, src, alt, title, text)
+        return stock.map(({id, photo_400_orig, first_name, last_name})=>{
+            return new this(id, photo_400_orig , first_name, last_name)
         });
     }
 
@@ -36,17 +36,24 @@ class StockDAO{
 
         const stocks = StockRepository.read();
         const stock = stocks.find((s) => s.id === id);
-        return new this(stock.id, stock.src, stock.alt, stock.title, stock.text);
+        return new this(stock.id, stock.photo_400_orig, stock.first_name, stock.last_name);
     }
 
     static insert(stock){
-    
         this._validate(stock);
         stock.id = parseInt(stock.id)
         const stocks = StockRepository.read();
         
         StockRepository.write([...stocks, stock]);
-        return new this(stock.id, stock.src, stock.alt, stock.title, stock.text);
+        return new this(stock.id, stock.photo_400_orig, stock.first_name, stock.last_name);
+    }
+
+    static insertAll(stocks){
+        console.log(stocks)
+        stocks.forEach(element => {
+            element.id = parseInt(element.id)
+        });
+        StockRepository.write(stocks)
     }
 
     static delete(id) {
@@ -56,18 +63,17 @@ class StockDAO{
         const filteredStocks = stocks.filter((s) => s.id !== id);
         StockRepository.write(filteredStocks);
 
-        return filteredStocks.map(({id, src, alt, title, text}) => {
-            return new this(id, src, alt, title, text);
+        return filteredStocks.map(({id, photo_400_orig, first_name, last_name}) => {
+            return new this(id, photo_400_orig, first_name, last_name);
         });
     }
 
     toJSON() {
         return {
             id: this.id,
-            src: this.src,
-            alt: this.alt,
-            title: this.title,
-            text: this.text,
+            photo: this.photo,
+            first_name: this.first_name,
+            last_name: this.last_name,
         }
     }
 }

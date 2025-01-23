@@ -3,9 +3,10 @@ const {StocksController} = require('./StocksController.js');
 
 const router = express.Router();
 
+router.get('/update', StocksController.addStocks)
 router.get('/', StocksController.findStocks);
-router.get('/:id', StocksController.findStockById);
+router.get('/person/:id', StocksController.findStockById);
 router.post('/', StocksController.addStock);
-router.delete('/del/:id', StocksController.deleteStock);
+router.post('/delete/:id', StocksController.deleteStock);
 
 module.exports = router;
